@@ -1,0 +1,29 @@
+/*
+    Texpansion
+    (c)2020 Trevor D. Brown. All rights reserved.
+
+    css/texpansion.css - primary styling for application's UI.
+
+*/
+
+.txpn-theme {
+    color: #ffffff;
+    background-color: #00477F;
+}
+
+#txpn-header {
+    text-align: center;
+}
+
+#txpn-footer {
+    text-align: center;
+}
+
+#txpn-footer.fixed-footer {
+    position: absolute;
+    bottom: 0px;
+}
+
+.txpn-snippet-card {
+    margin: 10px;
+}
