@@ -6,32 +6,20 @@
 
 */
 
-import { Webview, path } from "./deps.ts";
+import {servest, join, dirname} from "./deps.ts";
 
-function main(): void {
+const app = servest.createApp();
 
-    Deno.readTextFile("./src/interface/index.html").then((data) => {
-        var texspansionInterface = `data:text/html,${encodeURIComponent(data)}`;
-        
-        const webview = new Webview({
-            // Data
-            "title": "Texpansion",
-            "url": texspansionInterface,
-            // Window Dimensions
-            "width": 1024,
-            "height": 768,
-            "minWidth": 800,
-            "minHeight": 600,
-            // Window Attributes 
-            "resizable": true,
-            "frameless": false,
-            // Debugging
-            "debug": true
+app.use((req) => {
+    if (req.url.startsWith('/resources/css/')){
+        servest.serveStatic('./src/interface/css/', {
+            
         });
-    
-        webview.run();
-    
-    });
-};
+    } else if (req.url.startsWith('/resources/js/')){
+        servest.serveStatic('./src/interface/js/');
+    }
+});
 
-main();
+app.use(servest.serveStatic('./src/interface/'));
+
+app.listen({port: 3000});
